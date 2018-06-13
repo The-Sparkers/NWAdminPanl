@@ -71,6 +71,12 @@
     <Compile Include="Forms\AddProduct.Designer.cs">
       <DependentUpon>AddProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AddPromo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddPromo.Designer.cs">
+      <DependentUpon>AddPromo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Buyer.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -96,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddProduct.resx">
       <DependentUpon>AddProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddPromo.resx">
+      <DependentUpon>AddPromo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

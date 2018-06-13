@@ -17,7 +17,7 @@ namespace NawazEyeWebProject_AdminPanel
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AddCity());
+            Application.Run(new AddPromo());
         }
     }
 }

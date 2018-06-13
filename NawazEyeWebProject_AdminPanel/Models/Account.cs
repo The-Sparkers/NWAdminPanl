@@ -30,7 +30,7 @@ namespace NawazEyeWebProject.Models
             }
             catch (SqlException ex)
             {
-                if (ex.ErrorCode == 2601)
+                if (ex.Number == 2601)
                 {
                     Exception e = new Exception("The Username is already Taken");
                     throw e;
