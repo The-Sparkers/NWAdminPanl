@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.IO;
 
 namespace NawazEyeWebProject.Models
 {
@@ -415,7 +416,7 @@ namespace NawazEyeWebProject.Models
                 query = "update PRODUCT_IMAGES set PrimaryFlag=1 where Image='" + image + "' and ProductId=" + id + "; update PRODUCT_IMAGES set PrimaryFlag = 0 where ProductId = " + id + " and Image!='" + image + "'; ";
                 cmd = new SqlCommand(query, con);
                 con.Open();
-                if (cmd.ExecuteNonQuery() != 1)
+                if (cmd.ExecuteNonQuery() < 1)
                 {
                     Exception e = new Exception("Database Proccessing Error.");
                     throw e;
@@ -528,6 +529,10 @@ namespace NawazEyeWebProject.Models
         }
         public bool Delete()
         {
+            foreach (string image in Images)
+            {
+                DeleteImage(image);
+            }
             try
             {
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
@@ -554,6 +559,19 @@ namespace NawazEyeWebProject.Models
                 Exception e = new Exception("Database Connection Error. " + ex.Message);
                 throw e;
             }
+        }
+        private void DeleteImage(string fileName)
+        {
+            /*Some Code to Delete From FTP Server
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             * */
+            File.Delete(@"D:\New folder\VS Projects\NawazEyeWebProject\123NawazEyeWebProject\NawazEyeWebProject\images\Uploads\" + fileName);
         }
     }
 }

@@ -47,17 +47,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddProduct.cs">
+    <Compile Include="Forms\AddCity.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddProduct.Designer.cs">
+    <Compile Include="Forms\AddCity.Designer.cs">
+      <DependentUpon>AddCity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddFrames.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddFrames.Designer.cs">
+      <DependentUpon>AddFrames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddLens.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddLens.Designer.cs">
+      <DependentUpon>AddLens.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddProduct.Designer.cs">
       <DependentUpon>AddProduct.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Buyer.cs" />
@@ -73,7 +85,16 @@
     <Compile Include="Program.cs" />
     <Compile Include="ProjectClasses\MessageBoxes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddProduct.resx">
+    <EmbeddedResource Include="Forms\AddCity.resx">
+      <DependentUpon>AddCity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddFrames.resx">
+      <DependentUpon>AddFrames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddLens.resx">
+      <DependentUpon>AddLens.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddProduct.resx">
       <DependentUpon>AddProduct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
