@@ -40,12 +40,11 @@ namespace NawazEyeWebProject.Models
             char[] selection = code.ToCharArray();
             Random rand = new Random();
             char[] s = new char[5];
-            code = "";
             for (int i = 0; i < s.Length; i++)
             {
                 s[i] = selection[rand.Next(0, selection.Length)];
-                code += s[i].ToString();
             }
+            code = s.ToString();
             try
             {
                 con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
@@ -58,7 +57,7 @@ namespace NawazEyeWebProject.Models
             }
             catch (SqlException ex)
             {
-                if (ex.Number == 2601 && flagCount<5)
+                if (ex.ErrorCode == 2601 && flagCount<5)
                 {
                     flagCount++;
                     goto again;
@@ -118,7 +117,7 @@ namespace NawazEyeWebProject.Models
             try
             {
                 con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
-                query = "select * from ACCOUNT_USE_PROMOS where PromoId=" + id + " and BuyerId=" + buyerAccount.Buyer.BuyerId + " and AccountId=" + buyerAccount.AccountId; 
+                query = "select * from ACCOUNT_USE_PROMOS where PromoId=" + id + " and BuyerId=" + buyerAccount.Buyer.BuyerId; 
                 cmd = new SqlCommand(query, con);
                 con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();

@@ -9,14 +9,19 @@ namespace NawazEyeWebProject.Models
         SqlConnection con;
         SqlCommand cmd;
         string query;
-        int id, acntId;
-        string username, password;
-        bool blockFlag;
+        int buyerId, accessfailedCount;
+        DateTime lockoutEnd;
+        string username, password, acntId, email, securityStamp, phoneNumber;
+        bool blockFlag, emailCnfrm, phoneCnfrm, twoFactEn, lockoutEn;
         public Account(int buyerId)
         {
             SetValues(buyerId);
         }
-        public Account(string userName, string password)
+        public Account(string AccountId)
+        {
+
+        }
+       /* public Account(string userName, string password)
         {
             try
             {
@@ -30,7 +35,7 @@ namespace NawazEyeWebProject.Models
             }
             catch (SqlException ex)
             {
-                if (ex.Number == 2601)
+                if (ex.ErrorCode == 2601)
                 {
                     Exception e = new Exception("The Username is already Taken");
                     throw e;
@@ -41,15 +46,15 @@ namespace NawazEyeWebProject.Models
                     throw e;
                 }
             }
-        }
+        }*/
         public Buyer Buyer
         {
             get
             {
-                return new Buyer(id);
+                return new Buyer(buyerId);
             }
         }
-        public int AccountId
+        public string AccountId
         {
             get
             {
@@ -69,31 +74,6 @@ namespace NawazEyeWebProject.Models
             {
                 return password;
             }
-            set
-            {
-                try
-                {
-                    con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
-                    query = "Update ACCOUNTS set Password='" + value + "' where BuyerId=" + id;
-                    cmd = new SqlCommand(query, con);
-                    con.Open();
-                    if (cmd.ExecuteNonQuery() != 1)
-                    {
-                        Exception e = new Exception("Database Proccessing Error.");
-                        throw e;
-                    }
-                    else
-                    {
-                        SetValues(id);
-                    }
-                    con.Close();
-                }
-                catch (SqlException ex)
-                {
-                    Exception e = new Exception("Database Connection Error. " + ex.Message);
-                    throw e;
-                }
-            }
         }
         public bool IsBlocked
         {
@@ -107,7 +87,7 @@ namespace NawazEyeWebProject.Models
                 {
                     int i = Convert.ToInt16(value);
                     con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
-                    query = "update ACCOUNTS set BlockFlag=" + i + " where BuyerId=" + id;
+                    query = "update AspNetUsers set IsBlocked=" + i + " where Id='" + AccountId + "'";
                     cmd = new SqlCommand(query, con);
                     con.Open();
                     if (cmd.ExecuteNonQuery() != 1)
@@ -117,7 +97,7 @@ namespace NawazEyeWebProject.Models
                     }
                     else
                     {
-                        SetValues(id);
+                        SetValues(buyerId);
                     }
                     con.Close();
                 }
@@ -128,50 +108,110 @@ namespace NawazEyeWebProject.Models
                 }
             }
         }
-        private void SetValues(int id)
+        public string Email
+        {
+            get
+            {
+                return email;
+            }
+            set
+            {
+                Buyer.Email = value;
+                try
+                {
+                    con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+                    query = "update AspNetUsers set Email='" + value + "' where Id='" + AccountId + "'";
+                    cmd = new SqlCommand(query, con);
+                    con.Open();
+                    if (cmd.ExecuteNonQuery() != 1)
+                    {
+                        Exception e = new Exception("Database Proccessing Error.");
+                        throw e;
+                    }
+                    else
+                    {
+                        SetValues(buyerId);
+                    }
+                    con.Close();
+                }
+                catch (SqlException ex)
+                {
+                    Exception e = new Exception("Database Connection Error. " + ex.Message);
+                    throw e;
+                }
+            }
+          
+        }
+        public bool EmailConfirmed
+        {
+            get
+            {
+                return emailCnfrm;
+            }
+        }
+        public string SecurityStamp
+        {
+            get
+            {
+                return securityStamp;
+            }
+        }
+        public string PhoneNumber
+        {
+            get
+            {
+                return phoneNumber;
+            }
+        }
+        public bool PhoneNumberConfirmed
+        {
+            get
+            {
+                return phoneCnfrm;
+            }
+        }
+        public bool TwoFactorEnabled
+        {
+            get
+            {
+                return twoFactEn;
+            }
+        }
+        public int AccessFailedCount
+        {
+            get
+            {
+                return accessfailedCount;
+            }
+        }
+        
+        private void SetValues(int buyerId)
         {
             try
             {
                 con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
-                query = "select * from ACCOUNTS where BuyerId="+id;
+                query = "SELECT * FROM [AspNetUsers] WHERE BuyerId=" + buyerId;
                 cmd = new SqlCommand(query, con);
                 con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    this.id = (int)reader[0];
-                    acntId = (int)reader[1];
-                    username = (string)reader[2];
-                    blockFlag = (bool)reader[3];
-                    password = (string)reader[4];
+                    acntId = (string)reader[0];
+                    email = (string)reader[1];
+                    emailCnfrm = (bool)reader[2];
+                    password = (string)reader[3];
+                    securityStamp = (string)reader[4];
+                    phoneNumber = (string)reader[5];
+                    phoneCnfrm = (bool)reader[6];
+                    twoFactEn = (bool)reader[7];
+                    lockoutEnd = (DateTime)reader[8];
+                    lockoutEn = (bool)reader[9];
+                    accessfailedCount = (int)reader[10];
+                    blockFlag = (bool)reader[11];
+                    username = (string)reader[12];
+                    buyerId = (int)reader[13];
                 }
                 con.Close();
-            }
-            catch (SqlException ex)
-            {
-                Exception e = new Exception("Database Connection Error. " + ex.Message);
-                throw e;
-            }
-        }
-        public static bool IsUsernameTaken(string username)
-        {
-            try
-            {
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
-                string query = "select * from ACCOUNTS where Username='" + username + "'";
-                SqlCommand cmd = new SqlCommand(query, con);
-                con.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
-                {
-                    con.Close();
-                    return true;
-                }
-                else
-                {
-                    con.Close();
-                    return false;
-                }
             }
             catch (SqlException ex)
             {
@@ -184,7 +224,7 @@ namespace NawazEyeWebProject.Models
             try
             {
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
-                string query = "DELETE FROM [dbo].ACCOUNTS WHERE BuyerId = " + id;
+                string query = "DELETE FROM [AspNetUsers] WHERE Id = '" + AccountId + "'";
                 SqlCommand cmd = new SqlCommand(query, con);
                 con.Open();
                 if (cmd.ExecuteNonQuery() == 1)
