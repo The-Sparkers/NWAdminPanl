@@ -77,6 +77,24 @@
     <Compile Include="Forms\AddPromo.Designer.cs">
       <DependentUpon>AddPromo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ViewPrescriptionGlasses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ViewPrescriptionGlasses.Designer.cs">
+      <DependentUpon>ViewPrescriptionGlasses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ViewProducts.Designer.cs">
+      <DependentUpon>ViewProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewSunglasses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ViewSunglasses.Designer.cs">
+      <DependentUpon>ViewSunglasses.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Buyer.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -105,6 +123,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddPromo.resx">
       <DependentUpon>AddPromo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ViewPrescriptionGlasses.resx">
+      <DependentUpon>ViewPrescriptionGlasses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ViewProducts.resx">
+      <DependentUpon>ViewProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ViewSunglasses.resx">
+      <DependentUpon>ViewSunglasses.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

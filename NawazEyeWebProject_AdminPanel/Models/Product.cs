@@ -67,7 +67,7 @@ namespace NawazEyeWebProject.Models
                     query = "Update PRODUCTS set Name='"+value+"' where ProductId="+id.ToString();
                     cmd = new SqlCommand(query, con);
                     con.Open();
-                    if (cmd.ExecuteNonQuery() != 1)
+                    if (cmd.ExecuteNonQuery()!= 1)
                     {
                         Exception e = new Exception("Database Proccessing Error.");
                         throw e;
@@ -131,7 +131,7 @@ namespace NawazEyeWebProject.Models
                     query = "Update PRODUCTS set Price=" + value + " where ProductId=" + id;
                     cmd = new SqlCommand(query, con);
                     con.Open();
-                    if (cmd.ExecuteNonQuery() != 1)
+                    if (cmd.ExecuteNonQuery()!= 1)
                     {
                         Exception e = new Exception("Database Proccessing Error.");
                         throw e;
@@ -195,7 +195,7 @@ namespace NawazEyeWebProject.Models
                     query = "Update PRODUCTS set Discount=" + value + " where ProductId=" + id;
                     cmd = new SqlCommand(query, con);
                     con.Open();
-                    if (cmd.ExecuteNonQuery() != 1)
+                    if (cmd.ExecuteNonQuery()!= 0)
                     {
                         Exception e = new Exception("Database Proccessing Error.");
                         throw e;
@@ -227,7 +227,7 @@ namespace NawazEyeWebProject.Models
                     query = "Update PRODUCTS set FrameColor='" + value + "' where ProductId=" + id;
                     cmd = new SqlCommand(query, con);
                     con.Open();
-                    if (cmd.ExecuteNonQuery() != 1)
+                    if (cmd.ExecuteNonQuery()!= 0)
                     {
                         Exception e = new Exception("Database Proccessing Error.");
                         throw e;
@@ -447,7 +447,7 @@ namespace NawazEyeWebProject.Models
                     query = "update PRODUCTS set ItemsSold=" + value + " where ProductId=" + id;
                     cmd = new SqlCommand(query, con);
                     con.Open();
-                    if (cmd.ExecuteNonQuery() != 1)
+                    if (cmd.ExecuteNonQuery() < 1)
                     {
                         Exception e = new Exception("Database Proccessing Error.");
                         throw e;
@@ -490,24 +490,44 @@ namespace NawazEyeWebProject.Models
         }
         public static bool IsSunglasses(int productId)
         {
-            Sunglasses s = new Sunglasses(productId);
-            if (s.name != null)
+            try
             {
-                return true;
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+                string query = "select * from SUNGLASSES where ProductId=" + productId; 
+                SqlCommand cmd = new SqlCommand(query, con);
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    con.Close();
+                    return true;
+                }
+                con.Close();
+                return false;
             }
-            else
+            catch
             {
                 return false;
             }
         }
         public static bool IsPrescriptionGlasses(int productId)
         {
-            PrescriptionGlasses p = new PrescriptionGlasses(productId);
-            if (p.name != null)
+            try
             {
-                return true;
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+                string query = "select * from PRESCRIPTION_GLASSES where ProductId=" + productId;
+                SqlCommand cmd = new SqlCommand(query, con);
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    con.Close();
+                    return true;
+                }
+                con.Close();
+                return false;
             }
-            else
+            catch
             {
                 return false;
             }
