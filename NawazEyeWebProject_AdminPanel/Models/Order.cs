@@ -69,15 +69,9 @@ namespace NawazEyeWebProject.Models
                     query = "UPDATE ORDERS SET Status='" + value + "' WHERE OrderId=" + id;
                     cmd = new SqlCommand(query, con);
                     con.Open();
-                    if (cmd.ExecuteNonQuery() != 1)
-                    {
-                        Exception e = new Exception("Database Proccessing Error.");
-                        throw e;
-                    }
-                    else
-                    {
-                        SetValues(id);
-                    }
+                    cmd.ExecuteNonQuery();
+                    SetValues(id);
+
                     con.Close();
                 }
                 catch (SqlException ex)
@@ -101,15 +95,9 @@ namespace NawazEyeWebProject.Models
                     query = "UPDATE ORDERS SET DispatchDate='" + value.ToString() + "' WHERE OrderId=" + id;
                     cmd = new SqlCommand(query, con);
                     con.Open();
-                    if (cmd.ExecuteNonQuery() != 1)
-                    {
-                        Exception e = new Exception("Database Proccessing Error.");
-                        throw e;
-                    }
-                    else
-                    {
-                        SetValues(id);
-                    }
+                    cmd.ExecuteNonQuery();
+                    SetValues(id);
+
                     con.Close();
                 }
                 catch (SqlException ex)

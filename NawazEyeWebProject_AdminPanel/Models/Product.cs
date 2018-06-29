@@ -64,18 +64,12 @@ namespace NawazEyeWebProject.Models
                 try
                 {
                     con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
-                    query = "Update PRODUCTS set Name='"+value+"' where ProductId="+id.ToString();
+                    query = "Update PRODUCTS set Name='" + value + "' where ProductId=" + id.ToString();
                     cmd = new SqlCommand(query, con);
                     con.Open();
-                    if (cmd.ExecuteNonQuery()!= 1)
-                    {
-                        Exception e = new Exception("Database Proccessing Error.");
-                        throw e;
-                    }
-                    else
-                    {
-                        SetValues(id);
-                    }
+                    cmd.ExecuteNonQuery();
+                    SetValues(id);
+
                     con.Close();
                 }
                 catch (SqlException ex)
@@ -99,15 +93,9 @@ namespace NawazEyeWebProject.Models
                     query = "Update PRODUCTS set ProductDescription='" + value + "' where ProductId=" + id.ToString();
                     cmd = new SqlCommand(query, con);
                     con.Open();
-                    if (cmd.ExecuteNonQuery() != 1)
-                    {
-                        Exception e = new Exception("Database Proccessing Error.");
-                        throw e;
-                    }
-                    else
-                    {
-                        SetValues(id);
-                    }
+                    cmd.ExecuteNonQuery();
+                    SetValues(id);
+
                     con.Close();
                 }
                 catch (SqlException ex)
@@ -131,15 +119,9 @@ namespace NawazEyeWebProject.Models
                     query = "Update PRODUCTS set Price=" + value + " where ProductId=" + id;
                     cmd = new SqlCommand(query, con);
                     con.Open();
-                    if (cmd.ExecuteNonQuery()!= 1)
-                    {
-                        Exception e = new Exception("Database Proccessing Error.");
-                        throw e;
-                    }
-                    else
-                    {
-                        SetValues(id);
-                    }
+                    cmd.ExecuteNonQuery();
+                    SetValues(id);
+
                     con.Close();
                 }
                 catch (SqlException ex)
@@ -163,15 +145,9 @@ namespace NawazEyeWebProject.Models
                     query = "Update PRODUCTS set Quantity=" + value + " where ProductId=" + id;
                     cmd = new SqlCommand(query, con);
                     con.Open();
-                    if (cmd.ExecuteNonQuery() != 1)
-                    {
-                        Exception e = new Exception("Database Proccessing Error.");
-                        throw e;
-                    }
-                    else
-                    {
-                        SetValues(id);
-                    }
+                    cmd.ExecuteNonQuery();
+                    SetValues(id);
+
                     con.Close();
                 }
                 catch (SqlException ex)
@@ -195,15 +171,9 @@ namespace NawazEyeWebProject.Models
                     query = "Update PRODUCTS set Discount=" + value + " where ProductId=" + id;
                     cmd = new SqlCommand(query, con);
                     con.Open();
-                    if (cmd.ExecuteNonQuery()!= 0)
-                    {
-                        Exception e = new Exception("Database Proccessing Error.");
-                        throw e;
-                    }
-                    else
-                    {
-                        SetValues(id);
-                    }
+                    cmd.ExecuteNonQuery();
+                    SetValues(id);
+
                     con.Close();
                 }
                 catch (SqlException ex)
@@ -227,15 +197,9 @@ namespace NawazEyeWebProject.Models
                     query = "Update PRODUCTS set FrameColor='" + value + "' where ProductId=" + id;
                     cmd = new SqlCommand(query, con);
                     con.Open();
-                    if (cmd.ExecuteNonQuery()!= 0)
-                    {
-                        Exception e = new Exception("Database Proccessing Error.");
-                        throw e;
-                    }
-                    else
-                    {
-                        SetValues(id);
-                    }
+                    cmd.ExecuteNonQuery();
+                    SetValues(id);
+
                     con.Close();
                 }
                 catch (SqlException ex)
@@ -260,15 +224,9 @@ namespace NawazEyeWebProject.Models
                     query = "Update PRODUCTS set StopOrder=" + i + " where ProductId=" + id;
                     cmd = new SqlCommand(query, con);
                     con.Open();
-                    if (cmd.ExecuteNonQuery() != 1)
-                    {
-                        Exception e = new Exception("Database Proccessing Error.");
-                        throw e;
-                    }
-                    else
-                    {
-                        SetValues(id);
-                    }
+                    cmd.ExecuteNonQuery();
+                    SetValues(id);
+
                     con.Close();
                 }
                 catch (SqlException ex)
@@ -416,15 +374,9 @@ namespace NawazEyeWebProject.Models
                 query = "update PRODUCT_IMAGES set PrimaryFlag=1 where Image='" + image + "' and ProductId=" + id + "; update PRODUCT_IMAGES set PrimaryFlag = 0 where ProductId = " + id + " and Image!='" + image + "'; ";
                 cmd = new SqlCommand(query, con);
                 con.Open();
-                if (cmd.ExecuteNonQuery() < 1)
-                {
-                    Exception e = new Exception("Database Proccessing Error.");
-                    throw e;
-                }
-                else
-                {
-                    SetValues(id);
-                }
+                cmd.ExecuteNonQuery();
+                SetValues(id);
+
                 con.Close();
             }
             catch (SqlException ex)
@@ -447,15 +399,9 @@ namespace NawazEyeWebProject.Models
                     query = "update PRODUCTS set ItemsSold=" + value + " where ProductId=" + id;
                     cmd = new SqlCommand(query, con);
                     con.Open();
-                    if (cmd.ExecuteNonQuery() < 1)
-                    {
-                        Exception e = new Exception("Database Proccessing Error.");
-                        throw e;
-                    }
-                    else
-                    {
-                        SetValues(id);
-                    }
+                    cmd.ExecuteNonQuery();
+                    SetValues(id);
+
                     con.Close();
                 }
                 catch (SqlException ex)

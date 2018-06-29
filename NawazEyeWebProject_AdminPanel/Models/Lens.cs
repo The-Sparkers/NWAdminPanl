@@ -52,18 +52,12 @@ namespace NawazEyeWebProject.Models
                 try
                 {
                     con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
-                    query = "update LENS set LensName='"+value+"' where LensId="+id;
+                    query = "update LENS set LensName='" + value + "' where LensId=" + id;
                     cmd = new SqlCommand(query, con);
                     con.Open();
-                    if (cmd.ExecuteNonQuery() != 1)
-                    {
-                        Exception e = new Exception("Database Proccessing Error.");
-                        throw e;
-                    }
-                    else
-                    {
-                        SetValues(id);
-                    }
+                    cmd.ExecuteNonQuery();
+                    SetValues(id);
+
                     con.Close();
                 }
                 catch (SqlException ex)

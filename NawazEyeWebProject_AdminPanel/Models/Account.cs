@@ -15,6 +15,7 @@ namespace NawazEyeWebProject.Models
         bool blockFlag, emailCnfrm, phoneCnfrm, twoFactEn, lockoutEn;
         public Account(int buyerId)
         {
+            this.buyerId = buyerId;
             SetValues(buyerId);
         }
         public Account(string AccountId)
@@ -90,15 +91,8 @@ namespace NawazEyeWebProject.Models
                     query = "update AspNetUsers set IsBlocked=" + i + " where Id='" + AccountId + "'";
                     cmd = new SqlCommand(query, con);
                     con.Open();
-                    if (cmd.ExecuteNonQuery() != 1)
-                    {
-                        Exception e = new Exception("Database Proccessing Error.");
-                        throw e;
-                    }
-                    else
-                    {
-                        SetValues(buyerId);
-                    }
+                    cmd.ExecuteNonQuery();
+                    SetValues(buyerId);
                     con.Close();
                 }
                 catch (SqlException ex)
@@ -123,15 +117,10 @@ namespace NawazEyeWebProject.Models
                     query = "update AspNetUsers set Email='" + value + "' where Id='" + AccountId + "'";
                     cmd = new SqlCommand(query, con);
                     con.Open();
-                    if (cmd.ExecuteNonQuery() != 1)
-                    {
-                        Exception e = new Exception("Database Proccessing Error.");
-                        throw e;
-                    }
-                    else
-                    {
-                        SetValues(buyerId);
-                    }
+                    cmd.ExecuteNonQuery();
+
+                    SetValues(buyerId);
+
                     con.Close();
                 }
                 catch (SqlException ex)
