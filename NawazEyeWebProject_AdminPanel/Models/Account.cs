@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace NawazEyeWebProject.Models
 {
@@ -173,7 +174,25 @@ namespace NawazEyeWebProject.Models
                 return accessfailedCount;
             }
         }
-        
+        public int GetNumberOfOrders()
+        {
+            int i = 0;
+            try
+            {
+                con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+                query = "select count(*) from CARTS where BuyerId=" + buyerId + " and StatusFlag=1"; 
+                cmd = new SqlCommand(query, con);
+                con.Open();
+                i = (int)cmd.ExecuteScalar();
+                con.Close();
+                return i;
+            }
+            catch (SqlException ex)
+            {
+                Exception e = new Exception("Database Connection Error. " + ex.Message);
+                throw e;
+            }
+        }
         private void SetValues(int buyerId)
         {
             try
@@ -193,7 +212,7 @@ namespace NawazEyeWebProject.Models
                     phoneNumber = (string)reader[5];
                     phoneCnfrm = (bool)reader[6];
                     twoFactEn = (bool)reader[7];
-                    lockoutEnd = (DateTime)reader[8];
+                    //lockoutEnd = (DateTime)reader[8];
                     lockoutEn = (bool)reader[9];
                     accessfailedCount = (int)reader[10];
                     blockFlag = (bool)reader[11];
