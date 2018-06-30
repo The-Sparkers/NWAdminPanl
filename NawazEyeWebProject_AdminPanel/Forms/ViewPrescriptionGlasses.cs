@@ -80,7 +80,7 @@ namespace NawazEyeWebProject_AdminPanel.Forms
             try
             {
                 InitializeComponent();
-                this.prescriptionGlasses = prescriptionglass;
+                prescriptionGlasses = prescriptionglass;
                 lstIVM.Add(new ImagesViewModel { ImageName = prescriptionGlasses.PrimaryImage });
                 foreach (var item in prescriptionGlasses.Images)
                 {
