@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.numDiscount = new System.Windows.Forms.NumericUpDown();
-            this.chkStopOrder = new System.Windows.Forms.CheckedListBox();
             this.txtFrameColor = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -51,6 +50,7 @@
             this.btnSetPrimary = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.chkStopOrder = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numDiscount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageGridView)).BeginInit();
@@ -66,26 +66,15 @@
             this.numDiscount.Location = new System.Drawing.Point(82, 315);
             this.numDiscount.Name = "numDiscount";
             this.numDiscount.Size = new System.Drawing.Size(120, 20);
-            this.numDiscount.TabIndex = 33;
+            this.numDiscount.TabIndex = 5;
             this.numDiscount.ValueChanged += new System.EventHandler(this.numDiscount_ValueChanged);
-            // 
-            // chkStopOrder
-            // 
-            this.chkStopOrder.FormattingEnabled = true;
-            this.chkStopOrder.Items.AddRange(new object[] {
-            "Stop Order"});
-            this.chkStopOrder.Location = new System.Drawing.Point(12, 451);
-            this.chkStopOrder.Name = "chkStopOrder";
-            this.chkStopOrder.Size = new System.Drawing.Size(120, 19);
-            this.chkStopOrder.TabIndex = 40;
-            this.chkStopOrder.Click += new System.EventHandler(this.chkStopOrder_Click);
             // 
             // txtFrameColor
             // 
             this.txtFrameColor.Location = new System.Drawing.Point(82, 358);
             this.txtFrameColor.Name = "txtFrameColor";
             this.txtFrameColor.Size = new System.Drawing.Size(120, 20);
-            this.txtFrameColor.TabIndex = 36;
+            this.txtFrameColor.TabIndex = 6;
             this.txtFrameColor.TextChanged += new System.EventHandler(this.txtFrameColor_TextChanged);
             // 
             // label6
@@ -111,7 +100,7 @@
             this.numQuantity.Location = new System.Drawing.Point(82, 281);
             this.numQuantity.Name = "numQuantity";
             this.numQuantity.Size = new System.Drawing.Size(120, 20);
-            this.numQuantity.TabIndex = 32;
+            this.numQuantity.TabIndex = 4;
             this.numQuantity.ValueChanged += new System.EventHandler(this.numQuantity_ValueChanged);
             // 
             // label4
@@ -130,7 +119,7 @@
             this.txtPrice.Mask = "RS. 0000000000000";
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(121, 20);
-            this.txtPrice.TabIndex = 30;
+            this.txtPrice.TabIndex = 3;
             this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
             // 
             // label3
@@ -151,7 +140,7 @@
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtDescription.Size = new System.Drawing.Size(246, 141);
-            this.txtDescription.TabIndex = 28;
+            this.txtDescription.TabIndex = 2;
             this.txtDescription.TextChanged += new System.EventHandler(this.txtDescription_TextChanged);
             // 
             // label2
@@ -168,7 +157,7 @@
             this.txtName.Location = new System.Drawing.Point(82, 49);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(246, 20);
-            this.txtName.TabIndex = 26;
+            this.txtName.TabIndex = 1;
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // label1
@@ -202,7 +191,7 @@
             this.txtLensColor.Location = new System.Drawing.Point(82, 393);
             this.txtLensColor.Name = "txtLensColor";
             this.txtLensColor.Size = new System.Drawing.Size(121, 20);
-            this.txtLensColor.TabIndex = 44;
+            this.txtLensColor.TabIndex = 7;
             this.txtLensColor.TextChanged += new System.EventHandler(this.txtLensColor_TextChanged);
             // 
             // lblLensColor
@@ -232,7 +221,7 @@
             this.btnSetPrimary.Location = new System.Drawing.Point(481, 384);
             this.btnSetPrimary.Name = "btnSetPrimary";
             this.btnSetPrimary.Size = new System.Drawing.Size(140, 25);
-            this.btnSetPrimary.TabIndex = 46;
+            this.btnSetPrimary.TabIndex = 9;
             this.btnSetPrimary.Text = "Set Primary Image";
             this.btnSetPrimary.UseVisualStyleBackColor = true;
             this.btnSetPrimary.Click += new System.EventHandler(this.btnSetPrimary_Click);
@@ -242,7 +231,7 @@
             this.btnSave.Location = new System.Drawing.Point(829, 463);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 48;
+            this.btnSave.TabIndex = 10;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -253,10 +242,21 @@
             this.btnCancel.Location = new System.Drawing.Point(748, 463);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 49;
+            this.btnCancel.TabIndex = 11;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // chkStopOrder
+            // 
+            this.chkStopOrder.AutoSize = true;
+            this.chkStopOrder.Location = new System.Drawing.Point(15, 445);
+            this.chkStopOrder.Name = "chkStopOrder";
+            this.chkStopOrder.Size = new System.Drawing.Size(77, 17);
+            this.chkStopOrder.TabIndex = 8;
+            this.chkStopOrder.Text = "Stop Order";
+            this.chkStopOrder.UseVisualStyleBackColor = true;
+            this.chkStopOrder.CheckedChanged += new System.EventHandler(this.chkStopOrder_Click);
             // 
             // ViewSunglasses
             // 
@@ -265,6 +265,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(917, 498);
+            this.Controls.Add(this.chkStopOrder);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnSetPrimary);
@@ -274,7 +275,6 @@
             this.Controls.Add(this.txtProductId);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.numDiscount);
-            this.Controls.Add(this.chkStopOrder);
             this.Controls.Add(this.txtFrameColor);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -300,7 +300,6 @@
 
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.NumericUpDown numDiscount;
-        private System.Windows.Forms.CheckedListBox chkStopOrder;
         private System.Windows.Forms.TextBox txtFrameColor;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
@@ -320,5 +319,6 @@
         private System.Windows.Forms.Button btnSetPrimary;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.CheckBox chkStopOrder;
     }
 }

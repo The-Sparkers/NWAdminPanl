@@ -76,33 +76,48 @@ namespace NawazEyeWebProject_AdminPanel.Forms
         public ViewSunglasses(Sunglasses sunglasses)
         {
             InitializeComponent();
-            this.sunglasses = sunglasses;
-            lstIVM.Add(new ImagesViewModel { ImageName = sunglasses.PrimaryImage});
-            foreach(var item in sunglasses.Images)
+            try
             {
-                if (item != sunglasses.PrimaryImage)
+                this.sunglasses = sunglasses;
+                lstIVM.Add(new ImagesViewModel { ImageName = sunglasses.PrimaryImage });
+                foreach (var item in sunglasses.Images)
                 {
-                    lstIVM.Add(new ImagesViewModel { ImageName = item});
+                    if (item != sunglasses.PrimaryImage)
+                    {
+                        lstIVM.Add(new ImagesViewModel { ImageName = item });
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                MessageBoxes.Error(ex.Message);
             }
 
             Reset();
         }
         public void Reset()
         {
-            txtDescription.Text = sunglasses.ProductDescription;
-            txtFrameColor.Text = sunglasses.FrameColor;
-            txtLensColor.Text = sunglasses.LensColor;
-            txtName.Text = sunglasses.Name;
-            txtPrice.Text = decimal.Round(sunglasses.Price).ToString(); 
-            txtProductId.Text = ""+sunglasses.id;
-            numDiscount.Value = sunglasses.Discount;
-            numQuantity.Value = sunglasses.Quantity;
-            BindingSource imagesBinding = new BindingSource();
-            imagesBinding.DataSource = lstIVM;
-            imageGridView.DataSource = imagesBinding;
-            imageGridView.Columns[0].Visible = false;
-            imageGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            try
+            {
+                txtDescription.Text = sunglasses.ProductDescription;
+                txtFrameColor.Text = sunglasses.FrameColor;
+                txtLensColor.Text = sunglasses.LensColor;
+                txtName.Text = sunglasses.Name;
+                txtPrice.Text = decimal.Round(sunglasses.Price).ToString();
+                txtProductId.Text = "" + sunglasses.id;
+                numDiscount.Value = sunglasses.Discount;
+                numQuantity.Value = sunglasses.Quantity;
+                chkStopOrder.Checked = sunglasses.StopOrder;
+                BindingSource imagesBinding = new BindingSource();
+                imagesBinding.DataSource = lstIVM;
+                imageGridView.DataSource = imagesBinding;
+                imageGridView.Columns[0].Visible = false;
+                imageGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            }
+            catch(Exception ex)
+            {
+                MessageBoxes.Error(ex.Message);
+            }
         }
         public void SetPrimaryImage()
         {
@@ -118,33 +133,44 @@ namespace NawazEyeWebProject_AdminPanel.Forms
         }
         private void Save()
         {
-            if (nameTxtChanged)
+            try
             {
-                sunglasses.Name = txtName.Text;
+                if (nameTxtChanged)
+                {
+                    sunglasses.Name = txtName.Text;
+                }
+                if (descriptionTxtChanged)
+                {
+                    sunglasses.ProductDescription = txtDescription.Text;
+                }
+                if (priceTxtChanged)
+                {
+                    sunglasses.Price = Convert.ToDecimal(txtPrice.Text.Substring(3));
+                }
+                if (quantityValChanged)
+                {
+                    sunglasses.Quantity = (int)numQuantity.Value;
+                }
+                if (DiscountValChanged)
+                {
+                    sunglasses.Discount = (int)numDiscount.Value;
+                }
+                if (frameColorTxtChanged)
+                {
+                    sunglasses.FrameColor = txtFrameColor.Text;
+                }
+                if (lensColorTxtChanged)
+                {
+                    sunglasses.LensColor = txtLensColor.Text;
+                }
+                if (stopOrderValChanged)
+                {
+                    sunglasses.StopOrder = chkStopOrder.Checked;
+                }
             }
-            if (descriptionTxtChanged)
+            catch(Exception ex)
             {
-                sunglasses.ProductDescription = txtDescription.Text;
-            }
-            if (priceTxtChanged)
-            {
-                sunglasses.Price = Convert.ToDecimal(txtPrice.Text.Substring(3));
-            }
-            if (quantityValChanged)
-            {
-                sunglasses.Quantity = (int)numQuantity.Value;
-            }
-            if (DiscountValChanged)
-            {
-                sunglasses.Discount = (int)numDiscount.Value;
-            }
-            if (frameColorTxtChanged)
-            {
-                sunglasses.FrameColor = txtFrameColor.Text;
-            }
-            if (lensColorTxtChanged)
-            {
-                sunglasses.LensColor = txtLensColor.Text;
+                MessageBoxes.Error(ex.Message);
             }
         }
     }
@@ -159,10 +185,16 @@ namespace NawazEyeWebProject_AdminPanel.Forms
                 {
                     //This would be changed by the original Image Path on the server by using FTP
                     string imagePath = @"D:\New folder\VS Projects\NawazEyeWebProject\123NawazEyeWebProject\NawazEyeWebProject\images\Uploads\" + ImageName;
-                    return Image.FromFile(imagePath);
+                    Image i = Image.FromFile(imagePath);
+                    return i;
                 }
                 catch (FileNotFoundException)
                 {
+                    return null;
+                }
+                catch(Exception ex)
+                {
+                    MessageBoxes.Error(ex.Message);
                     return null;
                 }
             }

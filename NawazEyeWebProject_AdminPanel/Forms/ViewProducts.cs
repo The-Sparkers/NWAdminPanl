@@ -14,13 +14,20 @@ namespace NawazEyeWebProject_AdminPanel.Forms
         }
         private void Reset()
         {
-            BindingSource productBinding = new BindingSource();
-            productBinding.DataSource = Product.SearchProduct("");
-            viewProductsGridView.DataSource = productBinding;
-            viewProductsGridView.Columns[0].Visible = false;
-            viewProductsGridView.Columns[2].Visible = false;
-            viewProductsGridView.Columns[8].Visible = false;
-            viewProductsGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            try
+            {
+                BindingSource productBinding = new BindingSource();
+                productBinding.DataSource = Product.SearchProduct("");
+                viewProductsGridView.DataSource = productBinding;
+                viewProductsGridView.Columns[0].Visible = false;
+                viewProductsGridView.Columns[2].Visible = false;
+                viewProductsGridView.Columns[8].Visible = false;
+                viewProductsGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            }
+            catch(Exception ex)
+            {
+                MessageBoxes.Error(ex.Message);
+            }
         }
 
         private void selectAllBtn_Click(object sender, EventArgs e)
