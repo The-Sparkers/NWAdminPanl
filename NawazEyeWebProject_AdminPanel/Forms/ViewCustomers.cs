@@ -101,33 +101,22 @@ namespace NawazEyeWebProject_AdminPanel.Forms
 
         private void btnSndSMS_Click(object sender, EventArgs e)
         {
-            List<string> names = new List<string>();
-            List<string> numbers = new List<string>();
-            foreach(DataGridViewRow row in dataCustomers.SelectedRows)
+            if (dataCustomers.SelectedRows.Count > 0)
             {
-                string n = (string)row.Cells[1].Value;
-                names.Add(n);
-                n = (string)row.Cells[3].Value;
-                numbers.Add(n);
+                List<CustomerContactInfo> l = new List<CustomerContactInfo>();
+                foreach (DataGridViewRow row in dataCustomers.SelectedRows)
+                {
+                    l.Add(new CustomerContactInfo() { Name = (string)row.Cells[1].Value, Email = (string)row.Cells[2].Value, PhoneNumber = (string)row.Cells[3].Value });
+                }
+                SendSMS sendSMS = new SendSMS(l); 
+                sendSMS.ShowDialog();
             }
-            SendSMS sendSMS = new SendSMS(names, numbers);
-            sendSMS.ShowDialog();
-        }
-
-        private void btnSndEmail_Click(object sender, EventArgs e)
-        {
-            List<string> names = new List<string>();
-            List<string> emails = new List<string>();
-            foreach (DataGridViewRow row in dataCustomers.SelectedRows)
+            else
             {
-                string n = (string)row.Cells[1].Value;
-                names.Add(n);
-                n = (string)row.Cells[2].Value;
-                emails.Add(n);
+                MessageBoxes.Info("No row(s) selected.");
             }
-            SendEmail sendEmail = new SendEmail(names, emails);
-            sendEmail.ShowDialog();
         }
+        
     }
     public class CustomersViewModel
     {
@@ -140,5 +129,11 @@ namespace NawazEyeWebProject_AdminPanel.Forms
         public string UserName { get; set; }  
         public bool AccountBlocked { get; set; }
         public int Orders { get; set; }
+    }
+    public class CustomerContactInfo
+    {
+        public string Name { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Email { get; set; }
     }
 }

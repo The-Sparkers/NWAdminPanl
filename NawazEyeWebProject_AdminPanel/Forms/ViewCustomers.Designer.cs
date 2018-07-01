@@ -31,7 +31,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnSelectAll = new System.Windows.Forms.Button();
             this.dataCustomers = new System.Windows.Forms.DataGridView();
-            this.btnSndEmail = new System.Windows.Forms.Button();
             this.btnDisableAcnt = new System.Windows.Forms.Button();
             this.btnEnAcnt = new System.Windows.Forms.Button();
             this.btnSndSMS = new System.Windows.Forms.Button();
@@ -69,16 +68,6 @@
             this.dataCustomers.Size = new System.Drawing.Size(933, 358);
             this.dataCustomers.TabIndex = 7;
             // 
-            // btnSndEmail
-            // 
-            this.btnSndEmail.Location = new System.Drawing.Point(844, 408);
-            this.btnSndEmail.Name = "btnSndEmail";
-            this.btnSndEmail.Size = new System.Drawing.Size(107, 23);
-            this.btnSndEmail.TabIndex = 8;
-            this.btnSndEmail.Text = "Send Email";
-            this.btnSndEmail.UseVisualStyleBackColor = true;
-            this.btnSndEmail.Click += new System.EventHandler(this.btnSndEmail_Click);
-            // 
             // btnDisableAcnt
             // 
             this.btnDisableAcnt.Location = new System.Drawing.Point(18, 409);
@@ -101,11 +90,11 @@
             // 
             // btnSndSMS
             // 
-            this.btnSndSMS.Location = new System.Drawing.Point(731, 408);
+            this.btnSndSMS.Location = new System.Drawing.Point(844, 408);
             this.btnSndSMS.Name = "btnSndSMS";
             this.btnSndSMS.Size = new System.Drawing.Size(107, 23);
             this.btnSndSMS.TabIndex = 11;
-            this.btnSndSMS.Text = "Send SMS";
+            this.btnSndSMS.Text = "Send Message";
             this.btnSndSMS.UseVisualStyleBackColor = true;
             this.btnSndSMS.Click += new System.EventHandler(this.btnSndSMS_Click);
             // 
@@ -117,7 +106,6 @@
             this.Controls.Add(this.btnSndSMS);
             this.Controls.Add(this.btnEnAcnt);
             this.Controls.Add(this.btnDisableAcnt);
-            this.Controls.Add(this.btnSndEmail);
             this.Controls.Add(this.dataCustomers);
             this.Controls.Add(this.btnSelectAll);
             this.Controls.Add(this.label1);
@@ -134,7 +122,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSelectAll;
         private System.Windows.Forms.DataGridView dataCustomers;
-        private System.Windows.Forms.Button btnSndEmail;
         private System.Windows.Forms.Button btnDisableAcnt;
         private System.Windows.Forms.Button btnEnAcnt;
         private System.Windows.Forms.Button btnSndSMS;
