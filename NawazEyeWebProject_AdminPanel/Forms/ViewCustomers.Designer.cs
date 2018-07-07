@@ -109,6 +109,7 @@
             this.Controls.Add(this.dataCustomers);
             this.Controls.Add(this.btnSelectAll);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
             this.Name = "ViewCustomers";
             this.Text = "View Customers";
             ((System.ComponentModel.ISupportInitialize)(this.dataCustomers)).EndInit();

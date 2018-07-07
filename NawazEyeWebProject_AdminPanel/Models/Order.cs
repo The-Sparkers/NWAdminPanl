@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 
@@ -126,6 +127,10 @@ namespace NawazEyeWebProject.Models
                     Exception e = new Exception("Database Connection Error. " + ex.Message);
                     throw e;
                 }
+                catch (NullReferenceException)
+                {
+                    return null;
+                }
             }
         }
         public PromoCode Promo
@@ -146,6 +151,10 @@ namespace NawazEyeWebProject.Models
                 {
                     Exception e = new Exception("Database Connection Error. " + ex.Message);
                     throw e;
+                }
+                catch (NullReferenceException)
+                {
+                    return null;
                 }
             }
         }
@@ -194,10 +203,34 @@ namespace NawazEyeWebProject.Models
                 query = "select p.Discount from PROMO_CODES p, ORDER_HAS_CART_WITH_PROMO o where p.PromoId=o.PromoId and o.OrderId=" + id; 
                 cmd = new SqlCommand(query, con);
                 con.Open();
-                int discount = (int)cmd.ExecuteScalar();
+                decimal discount = (int)cmd.ExecuteScalar();
                 con.Close();
-                decimal tot = TotalPrice * (discount / 100);
+                decimal x = discount / 100;
+                decimal tot = TotalPrice * x;
                 return TotalPrice - tot;
+            }
+            catch (SqlException ex)
+            {
+                Exception e = new Exception("Database Connection Error. " + ex.Message);
+                throw e;
+            }
+        }
+        public static List<Order> Search(string status)
+        {
+            List<Order> l = new List<Order>();
+            try
+            {
+              SqlConnection  con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+                string query = "select OrderId from ORDERS where Status LIKE '%" + status + "%'";
+              SqlCommand  cmd = new SqlCommand(query, con);
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    l.Add(new Order((int)reader[0]));
+                }
+                con.Close();
+                return l;
             }
             catch (SqlException ex)
             {

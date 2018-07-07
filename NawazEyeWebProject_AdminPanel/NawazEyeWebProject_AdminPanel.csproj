@@ -77,6 +77,12 @@
     <Compile Include="Forms\AddPromo.Designer.cs">
       <DependentUpon>AddPromo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DispatchedDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DispatchedDetails.Designer.cs">
+      <DependentUpon>DispatchedDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SendSMS.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +94,24 @@
     </Compile>
     <Compile Include="Forms\ViewCustomers.Designer.cs">
       <DependentUpon>ViewCustomers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewOrderDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ViewOrderDetails.Designer.cs">
+      <DependentUpon>ViewOrderDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewOrders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ViewOrders.Designer.cs">
+      <DependentUpon>ViewOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewPrescription.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ViewPrescription.Designer.cs">
+      <DependentUpon>ViewPrescription.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ViewPrescriptionGlasses.cs">
       <SubType>Form</SubType>
@@ -136,11 +160,20 @@
     <EmbeddedResource Include="Forms\AddPromo.resx">
       <DependentUpon>AddPromo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DispatchedDetails.resx">
+      <DependentUpon>DispatchedDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SendSMS.resx">
       <DependentUpon>SendSMS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ViewCustomers.resx">
       <DependentUpon>ViewCustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ViewOrderDetails.resx">
+      <DependentUpon>ViewOrderDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ViewOrders.resx">
+      <DependentUpon>ViewOrders.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ViewPrescriptionGlasses.resx">
       <DependentUpon>ViewPrescriptionGlasses.cs</DependentUpon>

@@ -16,6 +16,47 @@ namespace NawazEyeWebProject_AdminPanel.Forms
             Reset();
             dataCustomers.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
         }
+        public ViewCustomers(Buyer buyer)
+        {
+            try
+            {
+                customersData = new List<CustomersViewModel>();
+                if (buyer.GetAccount() != null)
+                {
+                    haveAccount = true;
+                }
+                CustomersViewModel c = new CustomersViewModel();
+
+                c.BuyerId = buyer.BuyerId;
+                c.Name = buyer.Name;
+                c.Email = buyer.Email;
+                c.PhoneNumber = buyer.PhoneNumber;
+                c.City = buyer.City.Name;
+                c.HaveAccount = haveAccount;
+                if (buyer.GetAccount() != null)
+                {
+                    c.UserName = buyer.GetAccount().Username;
+                    c.AccountBlocked = buyer.GetAccount().IsBlocked;
+                    c.Orders = buyer.GetAccount().GetNumberOfOrders();
+                }
+                else
+                {
+                    c.UserName = "";
+                    c.AccountBlocked = false;
+                    c.Orders = 0;
+                }
+
+                customersData.Add(c);
+
+                BindingSource custBinding = new BindingSource();
+                custBinding.DataSource = customersData;
+                dataCustomers.DataSource = custBinding;
+            }
+            catch (Exception ex)
+            {
+                MessageBoxes.Error(ex.Message);
+            }
+        }
         public void Reset()
         {
             try

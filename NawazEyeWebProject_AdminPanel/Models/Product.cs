@@ -23,7 +23,7 @@ namespace NawazEyeWebProject.Models
         {
 
         }
-      protected Product(int id)
+        public Product(int id)
         {
             SetValues(id);
         }
