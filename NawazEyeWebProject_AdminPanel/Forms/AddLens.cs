@@ -45,6 +45,7 @@ namespace NawazEyeWebProject_AdminPanel.Forms
                 {
                     Reset();
                     MessageBoxes.Success("Record Added Successfully");
+                    DialogResult = DialogResult.OK;
                 }
             }
             catch (Exception ex)

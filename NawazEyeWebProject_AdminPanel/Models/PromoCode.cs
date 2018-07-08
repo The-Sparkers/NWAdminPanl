@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 
@@ -156,6 +157,28 @@ namespace NawazEyeWebProject.Models
                 con.Close();
             }
             catch (SqlException ex)
+            {
+                Exception e = new Exception("Database Connection Error. " + ex.Message);
+                throw e;
+            }
+        }
+        public static List<PromoCode> GetAllPromos()
+        {
+            try
+            {
+                List<PromoCode> list = new List<PromoCode>();
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+                string query = "select PromoId from PROMO_CODES";
+                SqlCommand cmd = new SqlCommand(query, con);
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    list.Add(new PromoCode((int)reader[0]));
+                }
+                return list;
+            }
+            catch(SqlException ex)
             {
                 Exception e = new Exception("Database Connection Error. " + ex.Message);
                 throw e;

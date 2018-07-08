@@ -95,6 +95,18 @@
     <Compile Include="Forms\ViewCustomers.Designer.cs">
       <DependentUpon>ViewCustomers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ViewFrames.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ViewFrames.Designer.cs">
+      <DependentUpon>ViewFrames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewLens.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ViewLens.Designer.cs">
+      <DependentUpon>ViewLens.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ViewOrderDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +136,12 @@
     </Compile>
     <Compile Include="Forms\ViewProducts.Designer.cs">
       <DependentUpon>ViewProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewPromos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ViewPromos.Designer.cs">
+      <DependentUpon>ViewPromos.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ViewSunglasses.cs">
       <SubType>Form</SubType>
@@ -169,6 +187,12 @@
     <EmbeddedResource Include="Forms\ViewCustomers.resx">
       <DependentUpon>ViewCustomers.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ViewFrames.resx">
+      <DependentUpon>ViewFrames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ViewLens.resx">
+      <DependentUpon>ViewLens.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ViewOrderDetails.resx">
       <DependentUpon>ViewOrderDetails.cs</DependentUpon>
     </EmbeddedResource>
@@ -183,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ViewProducts.resx">
       <DependentUpon>ViewProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ViewPromos.resx">
+      <DependentUpon>ViewPromos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ViewSunglasses.resx">
       <DependentUpon>ViewSunglasses.cs</DependentUpon>

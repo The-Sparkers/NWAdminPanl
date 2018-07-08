@@ -85,5 +85,86 @@ namespace NawazEyeWebProject_AdminPanel.Forms
                 }
             }
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AddProduct ap = new AddProduct();
+                if (ap.ShowDialog() == DialogResult.OK)
+                {
+                    Reset();
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBoxes.Error(ex.Message);
+            }
+        }
+
+        private void btnViewFrames_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ViewFrames vf = new ViewFrames();
+                vf.Show();
+            }
+            catch(Exception ex)
+            {
+                MessageBoxes.Error(ex.Message);
+            }
+        }
+
+        private void btnViewLens_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ViewLens vl = new ViewLens();
+                vl.Show();
+            }
+            catch(Exception ex)
+            {
+                MessageBoxes.Error(ex.Message);
+            }
+        }
+
+        private void btnViewPromos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ViewPromos vp = new ViewPromos();
+                vp.Show();
+            }
+            catch(Exception ex)
+            {
+                MessageBoxes.Error(ex.Message);
+            }
+        }
+
+        private void btnViewCustomers_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ViewCustomers vc = new ViewCustomers();
+                vc.Show();
+            }
+            catch(Exception ex)
+            {
+                MessageBoxes.Error(ex.Message);
+            }
+        }
+
+        private void btnViewOrders_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ViewOrders vo = new Forms.ViewOrders();
+                vo.Show();
+            }
+            catch(Exception ex)
+            {
+                MessageBoxes.Error(ex.Message);
+            }
+        }
     }
 }
