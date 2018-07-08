@@ -175,6 +175,9 @@
     <EmbeddedResource Include="Forms\ViewOrders.resx">
       <DependentUpon>ViewOrders.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ViewPrescription.resx">
+      <DependentUpon>ViewPrescription.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ViewPrescriptionGlasses.resx">
       <DependentUpon>ViewPrescriptionGlasses.cs</DependentUpon>
     </EmbeddedResource>

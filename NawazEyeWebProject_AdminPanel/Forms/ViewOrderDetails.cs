@@ -99,11 +99,12 @@ namespace NawazEyeWebProject_AdminPanel.Forms
         private void btnViewPrescription_Click(object sender, EventArgs e)
         {
             string prescription = (string)dataItemsLst.SelectedRows[0].Cells[4].Value;
-            if (Product.IsPrescriptionGlasses((int)dataItemsLst.SelectedRows[0].Cells[0].Value))
+            int id = (int)dataItemsLst.SelectedRows[0].Cells[0].Value;
+            if (Product.IsPrescriptionGlasses(id))
             {
                 string path = @"D:\New folder\VS Projects\NawazEyeWebProject\123NawazEyeWebProject\NawazEyeWebProject\images\Prescriptions\";
                 string file = path + prescription;
-                ViewPrescription vp = new ViewPrescription(file);
+                ViewPrescription vp = new ViewPrescription(file, id);
                 vp.Show();
             }
             else
