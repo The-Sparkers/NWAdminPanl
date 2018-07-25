@@ -537,7 +537,7 @@ namespace NawazEyeWebProject.Models
              * 
              * 
              * */
-            File.Delete(@"D:\New folder\VS Projects\NawazEyeWebProject\123NawazEyeWebProject\NawazEyeWebProject\images\Uploads\" + fileName);
+            File.Delete(ConfigurationManager.AppSettings["UploadsPath"] + fileName);
         }
     }
 }

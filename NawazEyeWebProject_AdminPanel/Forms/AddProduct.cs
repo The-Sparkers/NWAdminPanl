@@ -63,7 +63,6 @@ namespace NawazEyeWebProject_AdminPanel
                 {
                     MessageBoxes.Success("Record added succesfully");
                     Reset();
-                    DialogResult = DialogResult.OK;
                 }
             }
             catch(Exception ex)
@@ -75,7 +74,6 @@ namespace NawazEyeWebProject_AdminPanel
         private void btnReset_Click(object sender, EventArgs e)
         {
             Reset();
-            DialogResult = DialogResult.Retry;
         }
 
         private void Reset()
@@ -183,7 +181,8 @@ namespace NawazEyeWebProject_AdminPanel
                 MessageBox.Show("Error Connecting to the Server......");
             }*/
             //the code below will be removed in order to run the FTP code
-            File.Copy(item.FullName, @"D:\New folder\VS Projects\NawazEyeWebProject\123NawazEyeWebProject\NawazEyeWebProject\images\Uploads\" + serverFileName, true);
+            string path = System.Configuration.ConfigurationManager.AppSettings["UploadsPath"];
+            File.Copy(item.FullName, path + serverFileName, true);
             return serverFileName;
         }
 

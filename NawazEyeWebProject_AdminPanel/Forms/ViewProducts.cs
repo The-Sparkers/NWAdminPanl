@@ -24,7 +24,7 @@ namespace NawazEyeWebProject_AdminPanel.Forms
                 viewProductsGridView.Columns[8].Visible = false;
                 viewProductsGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBoxes.Error(ex.Message);
             }
@@ -75,11 +75,18 @@ namespace NawazEyeWebProject_AdminPanel.Forms
                 {
                     foreach (DataGridViewRow row in viewProductsGridView.SelectedRows)
                     {
-                        int id = (int)row.Cells[0].Value;
-                        Product p = new Product();
-                        p.id = id;
-                        p.Delete();
-                        Reset();
+                        try
+                        {
+                            int id = (int)row.Cells[0].Value;
+                            Product p = new Product();
+                            p.id = id;
+                            p.Delete();
+                            Reset();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBoxes.Error(ex.Message);
+                        }
                     }
                     viewProductsGridView.Refresh();
                 }
@@ -91,15 +98,18 @@ namespace NawazEyeWebProject_AdminPanel.Forms
             try
             {
                 AddProduct ap = new AddProduct();
-                if (ap.ShowDialog() == DialogResult.OK)
-                {
-                    Reset();
-                }
+                ap.Show();
+                ap.FormClosed += Ap_FormClosed;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBoxes.Error(ex.Message);
             }
+        }
+
+        private void Ap_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Reset();
         }
 
         private void btnViewFrames_Click(object sender, EventArgs e)
@@ -109,7 +119,7 @@ namespace NawazEyeWebProject_AdminPanel.Forms
                 ViewFrames vf = new ViewFrames();
                 vf.Show();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBoxes.Error(ex.Message);
             }
@@ -122,7 +132,7 @@ namespace NawazEyeWebProject_AdminPanel.Forms
                 ViewLens vl = new ViewLens();
                 vl.Show();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBoxes.Error(ex.Message);
             }
@@ -135,7 +145,7 @@ namespace NawazEyeWebProject_AdminPanel.Forms
                 ViewPromos vp = new ViewPromos();
                 vp.Show();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBoxes.Error(ex.Message);
             }
@@ -148,7 +158,7 @@ namespace NawazEyeWebProject_AdminPanel.Forms
                 ViewCustomers vc = new ViewCustomers();
                 vc.Show();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBoxes.Error(ex.Message);
             }
@@ -161,7 +171,7 @@ namespace NawazEyeWebProject_AdminPanel.Forms
                 ViewOrders vo = new Forms.ViewOrders();
                 vo.Show();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBoxes.Error(ex.Message);
             }

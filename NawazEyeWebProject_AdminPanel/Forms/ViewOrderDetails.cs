@@ -102,7 +102,7 @@ namespace NawazEyeWebProject_AdminPanel.Forms
             int id = (int)dataItemsLst.SelectedRows[0].Cells[0].Value;
             if (Product.IsPrescriptionGlasses(id))
             {
-                string path = @"D:\New folder\VS Projects\NawazEyeWebProject\123NawazEyeWebProject\NawazEyeWebProject\images\Prescriptions\";
+                string path = System.Configuration.ConfigurationManager.AppSettings["PrescriptionsPath"];
                 string file = path + prescription;
                 ViewPrescription vp = new ViewPrescription(file, id);
                 vp.Show();

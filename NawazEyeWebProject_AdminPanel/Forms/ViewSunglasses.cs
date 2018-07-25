@@ -184,7 +184,7 @@ namespace NawazEyeWebProject_AdminPanel.Forms
                 try
                 {
                     //This would be changed by the original Image Path on the server by using FTP
-                    string imagePath = @"D:\New folder\VS Projects\NawazEyeWebProject\123NawazEyeWebProject\NawazEyeWebProject\images\Uploads\" + ImageName;
+                    string imagePath = System.Configuration.ConfigurationManager.AppSettings["UploadsPath"] + ImageName;
                     Image i = Image.FromFile(imagePath);
                     return i;
                 }
